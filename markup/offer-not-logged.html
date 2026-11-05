@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Six Cities - Beautiful &amp; luxurious studio at great location</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/offer.css">
+</head>
+<body>
+  <svg width="0" height="0" class="visually-hidden" aria-hidden="true">
+    <symbol id="icon-bookmark" viewBox="0 0 20 20"><path d="M5 2.5h10a1 1 0 0 1 1 1V18l-6-3.8L4 18V3.5a1 1 0 0 1 1-1z" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-pin" viewBox="0 0 28 38"><path d="M14 0C6.3 0 0 6.1 0 13.7 0 24 14 38 14 38s14-14 14-24.3C28 6.1 21.7 0 14 0zm0 19a5.2 5.2 0 1 1 0-10.4A5.2 5.2 0 0 1 14 19z"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="6"/><path d="m13 13 5 5" stroke-linecap="round"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 12 12"><path d="m2 4 4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="icon-alert" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M10 6v5M10 14h.01" stroke-linecap="round"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15" stroke-linecap="round"/></symbol>
+  </svg>
+
+<div class="page">
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+      <nav class="user-nav" aria-label="Пользователь">
+        <a class="user-nav__link" href="login.html">Sign in</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page__main offer">
+    <!-- Галерея: до 6 фото. Телефон - лента со scroll-snap, планшет - 2 колонки, десктоп - сетка -->
+    <div class="container">
+      <ul class="gallery" aria-label="Photos">
+        <li class="gallery__item"><img class="gallery__image" src="img/offers/1.jpg" width="800" height="600" alt="Living room with a sofa"></li>
+        <li class="gallery__item"><img class="gallery__image" src="img/offers/4.jpg" width="800" height="600" alt="Bedroom"></li>
+        <li class="gallery__item"><img class="gallery__image" src="img/offers/6.jpg" width="800" height="600" alt="Kitchen"></li>
+        <li class="gallery__item"><img class="gallery__image" src="img/offers/8.jpg" width="800" height="600" alt="Bathroom"></li>
+        <li class="gallery__item"><img class="gallery__image" src="img/offers/10.jpg" width="800" height="600" alt="Dining area"></li>
+        <li class="gallery__item"><img class="gallery__image" src="img/offers/12.jpg" width="800" height="600" alt="View from the window"></li>
+      </ul>
+    </div>
+
+    <div class="container offer__layout">
+      <div class="offer__head">
+        <span class="badge offer__badge">Premium</span>
+        <h1 class="offer__title">Beautiful &amp; luxurious studio at great location</h1>
+        <div class="offer__rating">
+          <!-- Звёзды - округлённое значение (5 → 100%), число - как пришло с сервера -->
+          <div class="rating rating--large" aria-hidden="true"><span class="rating__fill" style="--rating: 100%"></span></div>
+          <span class="offer__rating-value"><span class="visually-hidden">Rating </span>4.8</span>
+        </div>
+        <ul class="offer__features">
+          <li class="offer__feature offer__feature--type">Apartment</li>
+          <li class="offer__feature offer__feature--bedrooms">3 Bedrooms</li>
+          <li class="offer__feature offer__feature--adults">Max 4 adults</li>
+        </ul>
+      </div>
+
+      <aside class="offer__aside" aria-label="Booking">
+        <div class="offer-summary">
+          <p class="offer-summary__price"><b>&euro;120</b> / night</p>
+          <button class="bookmark offer-summary__bookmark" type="button" aria-pressed="false">
+            <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+            <span class="visually-hidden">Add to favorites</span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="offer__details">
+        <section class="offer__section" aria-labelledby="goods-title">
+          <h2 class="offer__section-title" id="goods-title">What&rsquo;s inside</h2>
+          <ul class="goods">
+            <li class="goods__item">Wifi</li>
+            <li class="goods__item">Washing machine</li>
+            <li class="goods__item">Towels</li>
+            <li class="goods__item">Heating</li>
+            <li class="goods__item">Coffee machine</li>
+            <li class="goods__item">Baby seat</li>
+            <li class="goods__item">Kitchen</li>
+            <li class="goods__item">Dishwasher</li>
+            <li class="goods__item">Cable TV</li>
+            <li class="goods__item">Fridge</li>
+          </ul>
+        </section>
+
+        <section class="offer__section" aria-labelledby="host-title">
+          <h2 class="offer__section-title" id="host-title">Meet the host</h2>
+          <!-- Хозяин-Pro: модификатор .host--pro (рамка у аватара, звёздочка и подпись Pro) -->
+          <div class="host host--pro">
+            <div class="host__user">
+              <div class="host__avatar-wrapper">
+                <img class="host__avatar" src="img/avatars/avatar-angelina.svg" width="74" height="74" alt="">
+                <svg class="host__pro-icon" aria-hidden="true"><use href="#icon-star"></use></svg>
+              </div>
+              <div>
+                <p class="host__name">Angelina</p>
+                <p class="host__status">Pro</p>
+              </div>
+            </div>
+            <div class="host__description">
+              <p>A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. The building is green and from 18th century.</p>
+              <p>An independent house, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="offer__section reviews" aria-labelledby="reviews-title">
+          <h2 class="offer__section-title" id="reviews-title">Reviews &middot; <span class="reviews__amount">12</span></h2>
+          <ul class="reviews__list">
+            <li class="review">
+              <img class="review__avatar" src="img/avatars/user-1.svg" width="54" height="54" alt="">
+              <div class="review__body">
+                <div class="review__head">
+                  <p class="review__name">Max</p>
+                  <time class="review__date" datetime="2019-04-24">April 2019</time>
+                </div>
+                <div class="rating" aria-label="Rating 4 of 5"><span class="rating__fill" style="--rating: 80%"></span></div>
+                <p class="review__text">A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. The building is green and from 18th century.</p>
+              </div>
+            </li>
+            <li class="review">
+              <img class="review__avatar" src="img/avatars/user-2.svg" width="54" height="54" alt="">
+              <div class="review__body">
+                <div class="review__head">
+                  <p class="review__name">Sophie</p>
+                  <time class="review__date" datetime="2019-04-12">April 2019</time>
+                </div>
+                <div class="rating" aria-label="Rating 5 of 5"><span class="rating__fill" style="--rating: 100%"></span></div>
+                <p class="review__text">Great location, five minutes to the canals. The bed is huge and the kitchen has everything you need for a lazy breakfast.</p>
+              </div>
+            </li>
+            <li class="review">
+              <img class="review__avatar" src="img/avatars/user-4.svg" width="54" height="54" alt="">
+              <div class="review__body">
+                <div class="review__head">
+                  <p class="review__name">Christopher</p>
+                  <time class="review__date" datetime="2019-04-03">April 2019</time>
+                </div>
+                <div class="rating" aria-label="Rating 3 of 5"><span class="rating__fill" style="--rating: 60%"></span></div>
+                <p class="review__text">Nice and clean, but the street gets noisy on Friday nights. Angelina answered every question within minutes.</p>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Гость: формы нет, только приглашение войти -->
+          <p class="reviews__login"><a href="login.html">Sign in</a> to leave a review</p>
+        </section>
+      </div>
+    </div>
+
+    <section class="container offer__map" aria-label="Map of places nearby">
+      <div class="map">
+        <span class="map__pin" style="left: 24%; top: 34%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+        <span class="map__pin" style="left: 70%; top: 30%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+        <span class="map__pin" style="left: 36%; top: 76%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+        <span class="map__pin map__pin--active" style="left: 52%; top: 54%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+        <span class="map__note">Здесь - Яндекс Карты</span>
+      </div>
+    </section>
+
+    <section class="container near-places" aria-labelledby="near-title">
+      <h2 class="near-places__title" id="near-title">Other places in the neighbourhood</h2>
+      <div class="places-grid near-places__list">
+        <article class="place-card">
+          <div class="place-card__image-wrapper">
+            <img class="place-card__image" src="img/offers/2.jpg" width="400" height="300" alt="Room">
+            <button class="bookmark place-card__bookmark bookmark--active" type="button" aria-pressed="true">
+              <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+              <span class="visually-hidden">Remove from favorites</span>
+            </button>
+          </div>
+          <div class="place-card__info">
+            <p class="place-card__price"><b>&euro;80</b> / night</p>
+            <div class="rating" aria-label="Rating 4 of 5"><span class="rating__fill" style="--rating: 80%"></span></div>
+            <h3 class="place-card__title"><a href="offer.html">Wood and stone place</a></h3>
+            <p class="place-card__type">room</p>
+          </div>
+        </article>
+        <article class="place-card">
+          <div class="place-card__image-wrapper">
+            <img class="place-card__image" src="img/offers/3.jpg" width="400" height="300" alt="Apartment">
+            <button class="bookmark place-card__bookmark" type="button" aria-pressed="false">
+              <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+              <span class="visually-hidden">Add to favorites</span>
+            </button>
+          </div>
+          <div class="place-card__info">
+            <p class="place-card__price"><b>&euro;132</b> / night</p>
+            <div class="rating" aria-label="Rating 4 of 5"><span class="rating__fill" style="--rating: 80%"></span></div>
+            <h3 class="place-card__title"><a href="offer.html">Canal View Prinsengracht</a></h3>
+            <p class="place-card__type">apartment</p>
+          </div>
+        </article>
+        <article class="place-card">
+          <div class="place-card__image-wrapper">
+            <img class="place-card__image" src="img/offers/5.jpg" width="400" height="300" alt="Apartment">
+            <span class="badge place-card__badge">Premium</span>
+            <button class="bookmark place-card__bookmark" type="button" aria-pressed="false">
+              <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+              <span class="visually-hidden">Add to favorites</span>
+            </button>
+          </div>
+          <div class="place-card__info">
+            <p class="place-card__price"><b>&euro;180</b> / night</p>
+            <div class="rating" aria-label="Rating 5 of 5"><span class="rating__fill" style="--rating: 100%"></span></div>
+            <h3 class="place-card__title"><a href="offer.html">Nice, cozy, warm big bed apartment</a></h3>
+            <p class="place-card__type">apartment</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+      <p>Учебный проект</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

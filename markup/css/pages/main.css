@@ -1,0 +1,315 @@
+/* Главная страница */
+
+/* ---------- Список городов ---------- */
+.cities {
+  padding: 16px 0;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.cities__list {
+  display: flex;
+  gap: 8px;
+  /* На узких экранах города прокручиваются по горизонтали */
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin: 0 calc(var(--gutter) * -1);
+  padding: 0 var(--gutter);
+}
+
+.cities__list::-webkit-scrollbar {
+  display: none;
+}
+
+.cities__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 18px;
+  border-radius: 22px;
+  background: var(--color-bg);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.cities__link:hover {
+  background: var(--color-line);
+}
+
+.cities__link--active,
+.cities__link--active:hover {
+  background: var(--color-text);
+  color: #fff;
+}
+
+/* ---------- Раскладка: список + карта ---------- */
+.places-layout {
+  display: grid;
+  /* minmax(0, ...) - чтобы широкое содержимое (лента «Recently viewed») не растягивало страницу */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  padding-top: 24px;
+  padding-bottom: 48px;
+}
+
+.places-layout > * {
+  min-width: 0;
+}
+
+.places-layout__map {
+  display: none;
+}
+
+/* Переключатель «Список / Карта» - только на телефоне */
+.view-switch {
+  display: flex;
+  padding: 4px;
+  border-radius: 24px;
+  background: var(--color-line);
+}
+
+.view-switch__input {
+  position: absolute;
+  opacity: 0;
+}
+
+.view-switch__label {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 40px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.view-switch__input:checked + .view-switch__label {
+  background: var(--color-surface);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 15%);
+}
+
+.view-switch__input:focus-visible + .view-switch__label {
+  outline: 3px solid var(--color-primary);
+}
+
+/* Телефон: показывается либо список, либо карта.
+   В приложении невидимая часть не рендерится вовсе (useMediaQuery, H12),
+   в вёрстке переключение показано через CSS. */
+@media (max-width: 767px) {
+  .places-layout:has(#view-map:checked) .places-layout__list {
+    display: none;
+  }
+
+  .places-layout:has(#view-map:checked) .places-layout__map {
+    display: block;
+  }
+
+  .places-layout__map .map {
+    height: calc(100vh - var(--header-height) - 180px);
+    min-height: 360px;
+  }
+}
+
+@media (min-width: 768px) {
+  .view-switch {
+    display: none;
+  }
+
+  .places-layout__map {
+    display: block;
+  }
+
+  .places-layout__map .map {
+    height: 420px;
+  }
+}
+
+@media (min-width: 1144px) {
+  .places-layout {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: start;
+  }
+
+  .places-layout__map {
+    position: sticky;
+    top: calc(var(--header-height) + 24px);
+    order: 2;
+  }
+
+  .places-layout__map .map {
+    height: calc(100vh - var(--header-height) - 48px);
+    max-height: 760px;
+  }
+}
+
+/* ---------- Заголовок, поиск, сортировка ---------- */
+.places__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-bottom: 20px;
+}
+
+.places__title {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .places__title {
+    font-size: 26px;
+  }
+}
+
+.places__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.search {
+  position: relative;
+  flex: 1 1 220px;
+}
+
+.search__input {
+  padding-left: 40px;
+}
+
+.search__icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: var(--color-muted);
+  stroke-width: 2;
+}
+
+/* Сортировка. Открытое меню - .sort--opened */
+.sort {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.sort__caption {
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.sort__current {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--tap);
+  padding: 0 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-s);
+  background: var(--color-surface);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.sort__arrow {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: transform 0.2s;
+}
+
+.sort__list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 5;
+  display: none;
+  min-width: 220px;
+  padding: 6px;
+  border-radius: var(--radius-m);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-pop);
+}
+
+.sort--opened .sort__list {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .sort__list {
+    right: 0;
+    left: auto;
+  }
+}
+
+.sort--opened .sort__arrow {
+  transform: rotate(180deg);
+}
+
+.sort__option {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 12px;
+  border-radius: var(--radius-s);
+  cursor: pointer;
+}
+
+.sort__option:hover,
+.sort__option--focused {
+  background: var(--color-bg);
+}
+
+.sort__option--active {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* ---------- Недавно просмотренные (сверх ТЗ) ---------- */
+.recent {
+  margin-top: 40px;
+}
+
+.recent__title {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.recent__list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 1fr);
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.recent .place-card__image-wrapper {
+  aspect-ratio: 16 / 9;
+}
+
+.recent .place-card__title {
+  font-size: 15px;
+}
+
+/* ---------- Подгрузка порциями (сверх ТЗ) ---------- */
+.places__more {
+  display: grid;
+  place-items: center;
+  padding: 24px 0 0;
+  color: var(--color-muted);
+  font-size: 14px;
+}

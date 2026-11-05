@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Six Cities - UI states</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/offer.css">
+  <link rel="stylesheet" href="css/pages/states.css">
+</head>
+<body>
+  <svg width="0" height="0" class="visually-hidden" aria-hidden="true">
+    <symbol id="icon-bookmark" viewBox="0 0 20 20"><path d="M5 2.5h10a1 1 0 0 1 1 1V18l-6-3.8L4 18V3.5a1 1 0 0 1 1-1z" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-pin" viewBox="0 0 28 38"><path d="M14 0C6.3 0 0 6.1 0 13.7 0 24 14 38 14 38s14-14 14-24.3C28 6.1 21.7 0 14 0zm0 19a5.2 5.2 0 1 1 0-10.4A5.2 5.2 0 0 1 14 19z"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="6"/><path d="m13 13 5 5" stroke-linecap="round"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 12 12"><path d="m2 4 4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="icon-alert" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M10 6v5M10 14h.01" stroke-linecap="round"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15" stroke-linecap="round"/></symbol>
+  </svg>
+
+<div class="page">
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+      <!-- Шапка гостя: вместо email и Sign out - одна ссылка на вход -->
+      <nav class="user-nav" aria-label="Пользователь">
+        <a class="user-nav__link" href="login.html">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4h4v12h-4M8 6l-4 4 4 4M4 10h8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Sign in
+        </a>
+      </nav>
+    </div>
+  </header>
+
+    <main class="page__main">
+    <div class="container states">
+      <div class="states__intro">
+        <h1 class="states__heading">Служебные состояния интерфейса</h1>
+        <p class="states__lead">Служебная страница вёрстки: как выглядят загрузка, ошибки и блокировки. Тексты внутри примеров - английские, как в приложении. В приложение страница не переносится - переносятся сами элементы.</p>
+      </div>
+
+      <!-- 1. Спиннер -->
+      <section class="states__section" aria-labelledby="state-loader">
+        <h2 class="states__title" id="state-loader">Спиннер загрузки</h2>
+        <p class="states__text">Пока грузятся предложения на главной, предложение по <code>/offer/:id</code>, избранное и отзывы. Блок <code>.loader</code> с <code>role="status"</code>, чтобы скринридер сообщил о загрузке. При <code>prefers-reduced-motion</code> вращение отключается, остаётся текст.</p>
+        <div class="states__demo">
+          <div class="loader" role="status">
+            <span class="spinner" aria-hidden="true"></span>
+            <span class="loader__text">Loading offers&hellip;</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Сервер недоступен -->
+      <section class="states__section" aria-labelledby="state-server">
+        <h2 class="states__title" id="state-server">Сервер недоступен</h2>
+        <p class="states__text">Вместо содержимого страницы, когда запрос упал с сетевой ошибкой или 5xx и повтор не помог. Собрано на общем блоке <code>.empty</code>, кнопка «Try again» повторяет запрос.</p>
+        <div class="states__demo">
+          <div class="empty" role="alert">
+            <svg class="empty__image server-art" viewBox="0 0 160 160" aria-hidden="true">
+              <circle class="server-art__bg" cx="80" cy="80" r="64"/>
+              <rect class="server-art__unit" x="44" y="48" width="72" height="24" rx="6"/>
+              <rect class="server-art__unit" x="44" y="80" width="72" height="24" rx="6"/>
+              <circle class="server-art__led" cx="56" cy="60" r="4"/>
+              <circle class="server-art__led server-art__led--error" cx="56" cy="92" r="4"/>
+              <path class="server-art__slot" d="M70 60h32M70 92h32"/>
+              <path class="server-art__cross" d="m98 112 16 16m0-16-16 16"/>
+            </svg>
+            <h3 class="empty__title">Server is unavailable</h3>
+            <p class="empty__text">We could not load the data. Check your connection and try again in a minute.</p>
+            <button class="button" type="button">Try again</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Офлайн -->
+      <section class="states__section" aria-labelledby="state-offline">
+        <h2 class="states__title" id="state-offline">Нет соединения</h2>
+        <p class="states__text">Плашка над шапкой на всех страницах, пока браузер офлайн (событие <code>offline</code>, <code>navigator.onLine</code>). Исчезает сама, когда сеть вернулась. Ниже - плашка вместе с шапкой.</p>
+        <div class="states__demo states__demo--flush">
+          <div class="offline-bar" role="status">
+            <svg class="offline-bar__icon" aria-hidden="true"><use href="#icon-alert"></use></svg>
+            <span>No connection. Some actions are unavailable.</span>
+          </div>
+          <!-- Копия шапки только для наглядности: inert - не ловит фокус и клики -->
+          <header class="header" inert>
+            <div class="container header__inner">
+              <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+                <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+                <span class="logo__text">six<span>cities</span></span>
+              </a>
+              <!-- Шапка гостя: вместо email и Sign out - одна ссылка на вход -->
+              <nav class="user-nav" aria-label="Пользователь">
+                <a class="user-nav__link" href="login.html">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4h4v12h-4M8 6l-4 4 4 4M4 10h8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Sign in
+                </a>
+              </nav>
+            </div>
+          </header>
+        </div>
+      </section>
+
+      <!-- 4. Тост -->
+      <section class="states__section" aria-labelledby="state-toast">
+        <h2 class="states__title" id="state-toast">Уведомление об ошибке (тост)</h2>
+        <p class="states__text">Когда действие не удалось, а страница работает дальше: не добавилось в избранное, не отправился отзыв. В приложении тосты лежат в контейнере <code>.toast-region</code> (фиксирован внизу экрана, <code>aria-live</code>), здесь показан сам тост.</p>
+        <div class="states__demo">
+          <div class="toast toast--error" role="alert">
+            <svg class="toast__icon" aria-hidden="true"><use href="#icon-alert"></use></svg>
+            <p class="toast__text">Could not add to favorites. Try again</p>
+            <button class="toast__close" type="button">
+              <svg aria-hidden="true"><use href="#icon-close"></use></svg>
+              <span class="visually-hidden">Close</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Кнопка в загрузке -->
+      <section class="states__section" aria-labelledby="state-button">
+        <h2 class="states__title" id="state-button">Кнопка в состоянии загрузки</h2>
+        <p class="states__text">Пока идёт запрос: вход (Sign in), отправка отзыва (Submit). Кнопка <code>disabled</code> и <code>aria-busy="true"</code>, внутри маленький спиннер <code>.spinner--small</code> - повторно нажать нельзя.</p>
+        <div class="states__demo states__demo--row">
+          <button class="button" type="button">Sign in</button>
+          <button class="button" type="button" disabled aria-busy="true">
+            <span class="spinner spinner--small" aria-hidden="true"></span>
+            Signing in&hellip;
+          </button>
+          <button class="button button--ghost" type="button" disabled aria-busy="true">
+            <span class="spinner spinner--small" aria-hidden="true"></span>
+            Loading&hellip;
+          </button>
+        </div>
+      </section>
+
+      <!-- 6. Форма отзыва в отправке -->
+      <section class="states__section" aria-labelledby="state-review">
+        <h2 class="states__title" id="state-review">Форма отзыва во время отправки</h2>
+        <p class="states__text">Страница предложения, пока отзыв уходит на сервер: заблокирована вся форма - звёзды, текст и кнопка. Достаточно <code>disabled</code> на <code>&lt;fieldset&gt;</code>, он блокирует всё внутри. После ответа форма разблокируется.</p>
+        <div class="states__demo">
+          <form class="review-form" action="#" method="post" aria-busy="true">
+            <h3 class="review-form__title">Your review</h3>
+            <fieldset class="review-form__body" disabled>
+            <fieldset class="rating-input">
+              <legend class="rating-input__legend">Your rating</legend>
+              <div class="rating-input__stars">
+                <label class="rating-input__star">
+                  <input class="rating-input__control" type="radio" name="rating" value="1">
+                  <svg aria-hidden="true"><use href="#icon-star"></use></svg>
+                  <span class="visually-hidden">terribly</span>
+                </label>
+                <label class="rating-input__star">
+                  <input class="rating-input__control" type="radio" name="rating" value="2">
+                  <svg aria-hidden="true"><use href="#icon-star"></use></svg>
+                  <span class="visually-hidden">badly</span>
+                </label>
+                <label class="rating-input__star">
+                  <input class="rating-input__control" type="radio" name="rating" value="3">
+                  <svg aria-hidden="true"><use href="#icon-star"></use></svg>
+                  <span class="visually-hidden">not bad</span>
+                </label>
+                <label class="rating-input__star">
+                  <input class="rating-input__control" type="radio" name="rating" value="4" checked>
+                  <svg aria-hidden="true"><use href="#icon-star"></use></svg>
+                  <span class="visually-hidden">good</span>
+                </label>
+                <label class="rating-input__star">
+                  <input class="rating-input__control" type="radio" name="rating" value="5">
+                  <svg aria-hidden="true"><use href="#icon-star"></use></svg>
+                  <span class="visually-hidden">perfect</span>
+                </label>
+              </div>
+            </fieldset>
+            <label class="visually-hidden" for="review-text-demo">Review text</label>
+            <textarea class="field review-form__textarea" id="review-text-demo" name="review" rows="5" minlength="50" maxlength="300" aria-describedby="review-hint-demo" placeholder="Tell how was your stay, what you like and what can be improved">The flat is right by the canal, quiet at night and very clean. The host met us at the door and showed the best bakery nearby.</textarea>
+            <div class="review-form__footer">
+              <p class="review-form__hint" id="review-hint-demo">To submit review please make sure to set rating and describe your stay with at least <b>50 characters</b>.</p>
+              <button class="button review-form__submit" type="submit" aria-busy="true">
+                <span class="spinner spinner--small" aria-hidden="true"></span>
+                Sending...
+              </button>
+            </div>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+      <p>Учебный проект</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

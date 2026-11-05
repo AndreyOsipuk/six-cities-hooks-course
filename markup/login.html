@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Six Cities - Login</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/login.css">
+</head>
+<body>
+  <svg width="0" height="0" class="visually-hidden" aria-hidden="true">
+    <symbol id="icon-bookmark" viewBox="0 0 20 20"><path d="M5 2.5h10a1 1 0 0 1 1 1V18l-6-3.8L4 18V3.5a1 1 0 0 1 1-1z" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-pin" viewBox="0 0 28 38"><path d="M14 0C6.3 0 0 6.1 0 13.7 0 24 14 38 14 38s14-14 14-24.3C28 6.1 21.7 0 14 0zm0 19a5.2 5.2 0 1 1 0-10.4A5.2 5.2 0 0 1 14 19z"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="6"/><path d="m13 13 5 5" stroke-linecap="round"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 12 12"><path d="m2 4 4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="icon-alert" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M10 6v5M10 14h.01" stroke-linecap="round"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15" stroke-linecap="round"/></symbol>
+  </svg>
+
+<div class="page">
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+      <!-- Шапка гостя: вместо email и Sign out - одна ссылка на вход -->
+      <nav class="user-nav" aria-label="Пользователь">
+        <a class="user-nav__link" href="login.html" aria-current="page">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4h4v12h-4M8 6l-4 4 4 4M4 10h8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Sign in
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page__main">
+    <div class="container login">
+      <section class="login__panel" aria-labelledby="login-title">
+        <h1 class="login__title" id="login-title">Sign in</h1>
+
+        <!-- Состояние ошибки: у поля .field--error и aria-invalid, под полем .form-error -->
+        <form class="login__form" action="#" method="post" novalidate>
+          <div class="login__group">
+            <label class="login__label" for="login-email">E-mail</label>
+            <input class="field" id="login-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+
+          <div class="login__group">
+            <label class="login__label" for="login-password">Password</label>
+            <input class="field field--error" id="login-password" type="password" name="password" placeholder="Password" autocomplete="current-password" required aria-invalid="true" aria-describedby="login-password-hint login-password-error" value="password">
+            <p class="login__hint" id="login-password-hint">Password must contain at least one letter and one digit</p>
+            <p class="form-error" id="login-password-error">The password has no digits. Add at least one digit.</p>
+          </div>
+
+          <button class="button login__submit" type="submit">Sign in</button>
+        </form>
+      </section>
+
+      <!-- Случайный город из шести. Клик - на главную с этим городом -->
+      <a class="login__city" href="main.html">
+        <img class="login__city-image" src="img/offers/15.jpg" width="800" height="600" alt="">
+        <span class="login__city-text">
+          <span class="login__city-caption">Explore</span>
+          <span class="login__city-name">Amsterdam</span>
+        </span>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+      <p>Учебный проект</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

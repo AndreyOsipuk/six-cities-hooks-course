@@ -1,0 +1,561 @@
+/* Страница предложения (offer.html, offer-not-logged.html) */
+
+.offer {
+  padding-top: 24px;
+  padding-bottom: 48px;
+}
+
+/* ---------- Галерея ---------- */
+/* Телефон: горизонтальная лента со scroll-snap, следующее фото чуть выглядывает */
+.gallery {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 85%;
+  gap: 8px;
+  margin: 0 calc(var(--gutter) * -1);
+  padding: 0 var(--gutter);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 var(--gutter);
+  scrollbar-width: none;
+}
+
+.gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery__item {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--color-line);
+  scroll-snap-align: start;
+}
+
+.gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Планшет: 2 колонки, лента превращается в сетку */
+@media (min-width: 768px) {
+  .gallery {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-columns: auto;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  /* Пониже, чтобы 3 ряда не уводили заголовок далеко за первый экран */
+  .gallery__item {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* Десктоп: сетка 3 колонки (6 фото = 2 ряда без дыр).
+   Первое фото крупнее по высоте ряда - за счёт grid-auto-rows */
+@media (min-width: 1144px) {
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 240px;
+  }
+
+  .gallery__item {
+    aspect-ratio: auto;
+  }
+}
+
+/* ---------- Раскладка: шапка, блок цены, подробности ---------- */
+.offer__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "head"
+    "aside"
+    "details";
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.offer__head {
+  grid-area: head;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.offer__aside {
+  grid-area: aside;
+}
+
+.offer__details {
+  grid-area: details;
+  min-width: 0;
+}
+
+/* Десктоп: информация слева, справа - липкий блок с ценой */
+@media (min-width: 1144px) {
+  .offer__layout {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    grid-template-areas:
+      "head aside"
+      "details aside";
+    column-gap: 48px;
+    padding-top: 32px;
+  }
+
+  .offer__aside {
+    align-self: start;
+    position: sticky;
+    top: calc(var(--header-height) + 24px);
+  }
+}
+
+.offer__title {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 768px) {
+  .offer__title {
+    font-size: 34px;
+  }
+}
+
+.offer__rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.offer__rating-value {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.offer__features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.offer__feature {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 18px;
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-line);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ---------- Блок цены и избранного ---------- */
+.offer-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: var(--radius-m);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.offer-summary__price {
+  color: var(--color-muted);
+}
+
+.offer-summary__price b {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+/* Крупная кнопка «Избранное» - только размеры, остальное из .bookmark */
+.offer-summary__bookmark {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+}
+
+.offer-summary__bookmark svg {
+  width: 26px;
+  height: 26px;
+}
+
+@media (min-width: 1144px) {
+  .offer-summary {
+    padding: 24px;
+  }
+}
+
+/* ---------- Разделы ---------- */
+.offer__section {
+  padding: 28px 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.offer__section:first-child {
+  border-top: 0;
+  padding-top: 8px;
+}
+
+.offer__section-title {
+  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+/* ---------- Удобства ---------- */
+.goods {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px 24px;
+}
+
+.goods__item {
+  position: relative;
+  padding-left: 22px;
+}
+
+/* Маркер-галочка */
+.goods__item::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid var(--color-primary);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* ---------- Хозяин ---------- */
+.host {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.host__user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.host__avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+}
+
+.host__avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--color-line);
+}
+
+.host__name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.host__description {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Иконка и подпись видны только у Pro */
+.host__pro-icon,
+.host__status {
+  display: none;
+}
+
+.host--pro .host__avatar {
+  box-shadow: 0 0 0 3px var(--color-surface), 0 0 0 5px var(--color-accent);
+}
+
+.host--pro .host__pro-icon {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  fill: #fff;
+  box-shadow: 0 0 0 2px var(--color-surface);
+}
+
+.host--pro .host__status {
+  display: block;
+  color: var(--color-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ---------- Отзывы ---------- */
+.reviews__amount {
+  color: var(--color-muted);
+}
+
+.reviews__list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.review {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.review__avatar {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--color-line);
+}
+
+.review__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+}
+
+.review__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+}
+
+.review__name {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.review__date {
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.review__text {
+  overflow-wrap: anywhere;
+}
+
+/* Гость: вместо формы - приглашение войти */
+.reviews__login {
+  margin-top: 28px;
+  /* Вертикальный отступ маленький - высоту даёт тап-зона ссылки 44px */
+  padding: 6px 20px;
+  border-radius: var(--radius-m);
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-line);
+}
+
+.reviews__login a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Форма отзыва ---------- */
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 20px;
+  border-radius: var(--radius-m);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.review-form__title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.review-form__textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.review-form__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.review-form__hint {
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.review-form__hint b {
+  color: var(--color-text);
+}
+
+@media (min-width: 768px) {
+  .review-form {
+    padding: 24px;
+  }
+
+  .review-form__footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .review-form__submit {
+    flex-shrink: 0;
+    min-width: 160px;
+  }
+}
+
+/* Выбор оценки: 5 радиокнопок в DOM-порядке 1-5 (стрелки на клавиатуре идут слева направо).
+   Подсветка «до выбранной» - через :has(). */
+.rating-input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.rating-input__legend {
+  margin-bottom: 4px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rating-input__stars {
+  display: flex;
+  margin-left: -6px;
+}
+
+.rating-input__star {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: var(--radius-s);
+  color: var(--color-star-empty);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.rating-input__star svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+/* Сам input скрыт визуально, но остаётся в фокусе и в дереве доступности */
+.rating-input__control {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Выбранная звезда и все левее неё */
+.rating-input__star:has(:checked),
+.rating-input__star:has(~ .rating-input__star :checked) {
+  color: var(--color-star);
+}
+
+/* Наведение имеет приоритет над выбором */
+.rating-input__stars:hover .rating-input__star {
+  color: var(--color-star-empty);
+}
+
+.rating-input__stars:hover .rating-input__star:hover,
+.rating-input__stars:hover .rating-input__star:has(~ .rating-input__star:hover) {
+  color: var(--color-star);
+}
+
+.rating-input__star:has(:focus-visible) {
+  outline: 3px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.rating-input:disabled .rating-input__star {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ---------- Карта соседних предложений ---------- */
+.offer__map {
+  margin-top: 16px;
+}
+
+.offer__map .map {
+  height: 320px;
+}
+
+@media (min-width: 768px) {
+  .offer__map .map {
+    height: 420px;
+  }
+}
+
+@media (min-width: 1144px) {
+  .offer__map .map {
+    height: 480px;
+  }
+}
+
+/* ---------- Соседние предложения ---------- */
+.near-places {
+  margin-top: 40px;
+}
+
+.near-places__title {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .near-places__title {
+    font-size: 26px;
+  }
+
+  .near-places__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

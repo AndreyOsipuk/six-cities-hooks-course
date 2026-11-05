@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Six Cities - Dusseldorf</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/main.css">
+  <link rel="stylesheet" href="css/pages/main-empty.css">
+</head>
+<body>
+  <svg width="0" height="0" class="visually-hidden" aria-hidden="true">
+    <symbol id="icon-bookmark" viewBox="0 0 20 20"><path d="M5 2.5h10a1 1 0 0 1 1 1V18l-6-3.8L4 18V3.5a1 1 0 0 1 1-1z" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-pin" viewBox="0 0 28 38"><path d="M14 0C6.3 0 0 6.1 0 13.7 0 24 14 38 14 38s14-14 14-24.3C28 6.1 21.7 0 14 0zm0 19a5.2 5.2 0 1 1 0-10.4A5.2 5.2 0 0 1 14 19z"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="6"/><path d="m13 13 5 5" stroke-linecap="round"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 12 12"><path d="m2 4 4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="icon-alert" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M10 6v5M10 14h.01" stroke-linecap="round"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15" stroke-linecap="round"/></symbol>
+  </svg>
+
+<div class="page">
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+      <nav class="user-nav" aria-label="Пользователь">
+        <a class="user-nav__link" href="favorites.html">
+          <img class="user-nav__avatar" src="img/avatars/user-3.svg" width="32" height="32" alt="">
+          <span class="user-nav__email">oliver.conner@gmail.com</span>
+          <span class="user-nav__count" aria-label="В избранном: 3">3</span>
+        </a>
+        <a class="user-nav__link user-nav__link--signout" href="main.html">
+          <span class="user-nav__label">Sign out</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4H4v12h4M12 6l4 4-4 4M16 10H8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page__main">
+    <h1 class="visually-hidden">Cities</h1>
+    <nav class="cities" aria-label="Cities">
+      <div class="container">
+        <ul class="cities__list">
+          <li><a class="cities__link" href="#">Paris</a></li>
+          <li><a class="cities__link" href="#">Cologne</a></li>
+          <li><a class="cities__link" href="#">Brussels</a></li>
+          <li><a class="cities__link" href="#">Amsterdam</a></li>
+          <li><a class="cities__link" href="#">Hamburg</a></li>
+          <li><a class="cities__link cities__link--active" href="#" aria-current="page">Dusseldorf</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container places-layout places-layout--empty">
+      <section class="places places-layout__list" aria-labelledby="places-empty-title">
+        <div class="empty places__empty">
+          <img class="empty__image" src="img/no-places.svg" width="160" height="160" alt="">
+          <h2 class="empty__title" id="places-empty-title">No places to stay available</h2>
+          <p class="empty__text">We could not find any property available at the moment in Dusseldorf</p>
+        </div>
+      </section>
+
+      <div class="places-layout__map" aria-hidden="true">
+        <div class="map-placeholder">
+          <img class="map-placeholder__image" src="img/map-placeholder.svg" width="400" height="400" alt="">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+      <p>Учебный проект</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

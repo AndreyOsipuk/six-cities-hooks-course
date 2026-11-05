@@ -1,27 +1,27 @@
 # Настройка окружения
 
-## 0. Версии (H0)
+## 0. Создание проекта и версии (H0)
 
-Стартовый шаблон академии собран на React 18.2, React Router 6.16, Redux Toolkit 1.9, Vite 4, Vitest 0.34, `eslint-plugin-react-hooks` 4.6. Первый PR (H0) - перевести его на актуальные версии (ноябрь 2026):
+Проект создаётся с нуля:
 
-| Пакет | Было | Стало |
-|-------|------|-------|
-| Node.js | любая | **24+** (требует `eslint-config-htmlacademy` 11; React Router 8 требует 22.22+) |
-| `react`, `react-dom` | 18.2 | 19.3 |
-| `@types/react`, `@types/react-dom` | 18 | 19 |
-| `react-router-dom` | 6.16 | удалить, вместо него `react-router` 8 |
-| `@reduxjs/toolkit` | 1.9 | 2.x |
-| `react-redux` | 8 | 9 |
-| `vite` | 4 | 8 |
-| `@vitejs/plugin-react` | 4 | 6 |
-| `vitest` | 0.34 | 5 |
-| `typescript` | 5.2 | **7.0** для проверки типов + пакет совместимости TypeScript 6 для линтера, см. раздел 0.1 |
-| `eslint` | 8 | 10, конфиг переводится на flat config (`eslint.config.js`) |
-| `eslint-config-htmlacademy` | 9.1 | 11, пресет `eslint-config-htmlacademy/react-typescript` |
-| `@testing-library/react` | 14 | 16 |
-| `eslint-plugin-react-hooks` | 4.6 | 7 (flat config) |
+```bash
+npm create vite@latest six-cities -- --template react-ts
+```
 
-Берите последние версии из этих линеек на момент работы - `npm outdated` покажет, что ещё отстаёт.
+Версии на ноябрь 2026 - берите последние из этих линеек (`npm outdated` покажет, что отстаёт):
+
+| Пакет | Версия | Когда ставить |
+|-------|--------|---------------|
+| Node.js | **24+** (требует `eslint-config-htmlacademy` 11; React Router 8 требует 22.22+) | до начала |
+| `react`, `react-dom`, `@types/react`, `@types/react-dom` | 19.3 | этап 1 (приходят с шаблоном Vite) |
+| `vite`, `@vitejs/plugin-react` | 8, 6 | этап 1 |
+| `typescript` | **7.0** для проверки типов + пакет совместимости TypeScript 6 для линтера, см. раздел 0.1 | этап 1 |
+| `eslint`, `eslint-config-htmlacademy`, `eslint-plugin-react-hooks` | 10, 11 (пресет `eslint-config-htmlacademy/react-typescript`), 7 | этап 1 |
+| `vitest`, `@testing-library/react`, `@testing-library/user-event`, `@testing-library/jest-dom`, `jsdom` | 5, 16 и последние | этап 1 |
+| `react-router` | 8 (не `react-router-dom`) | этап 3 |
+| `@reduxjs/toolkit`, `react-redux` | 2, 9 | этап 6 |
+| `axios`, `axios-mock-adapter` | последние | этап 7 |
+| `@yandex/ymaps3-types` | последняя | этап 5 |
 
 ### 0.1. TypeScript 7
 
@@ -46,20 +46,30 @@ TypeScript 7 - компилятор, переписанный на Go, пров�
 
 Когда `typescript-eslint` выпустит поддержку TypeScript 7, оба пакета заменяются одним `typescript@7`.
 
-Руководства по переходу (читать до начала, а не после ошибки):
+Документация по ключевым библиотекам (читать до начала, а не после ошибки):
 
-- React 19: https://react.dev/blog/2024/04/25/react-19-upgrade-guide
-- React Router v6 → v7: https://reactrouter.com/7.18.0/upgrading/v6
-- React Router v7 → v8: https://reactrouter.com/upgrading/v7
-- Redux Toolkit 2: https://redux-toolkit.js.org/usage/migrating-rtk-2
-- Vite: https://vite.dev/guide/migration
+- React: https://react.dev/learn
+- React Router: https://reactrouter.com/start/modes (нужен режим Data: `createBrowserRouter`)
+- Redux Toolkit: https://redux-toolkit.js.org/tutorials/quick-start
+- Vite: https://vite.dev/guide/
+- Vitest: https://vitest.dev/guide/
 
 ## 1. Сервер
 
-Тот же, что в основном проекте:
+Два сервера с одинаковым API - фронтенд работает с любым, меняется только базовый адрес:
 
-- API: `https://14.design.htmlacademy.pro/six-cities`
-- Спецификация: `https://14.design.htmlacademy.pro/spec/six-cities`
+| Сервер | Адрес | Когда |
+|--------|-------|-------|
+| Сервер HTML Academy | `https://14.design.htmlacademy.pro/six-cities` | основной |
+| Учебный сервер курса | `http://localhost:3000/six-cities` - запускается у вас: https://github.com/AndreyOsipuk/six-cities-server | если сервер академии недоступен, и для этапов 7-9: в нём есть режим задержек и случайных ошибок для проверки гонок, повторов и отката |
+
+Спецификация API: `https://14.design.htmlacademy.pro/spec/six-cities`
+
+Базовый адрес вынесите в переменную окружения, чтобы переключаться без правки кода:
+
+```ts
+const BACKEND_URL = import.meta.env.VITE_API_URL ?? 'https://14.design.htmlacademy.pro/six-cities';
+```
 
 ## 2. Яндекс Карты (H5)
 

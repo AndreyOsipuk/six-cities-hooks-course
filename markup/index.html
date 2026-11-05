@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Six Cities - вёрстка</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .catalog { padding: 32px 0 64px; }
+    .catalog__title { margin-bottom: 8px; font-size: 28px; font-weight: 800; }
+    .catalog__lead { margin-bottom: 32px; color: var(--color-muted); }
+    .catalog__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .catalog__item { display: flex; flex-direction: column; border-radius: var(--radius-m); background: var(--color-surface); box-shadow: var(--shadow-card); overflow: hidden; }
+    .catalog__item:hover { box-shadow: 0 0 0 2px var(--color-primary), var(--shadow-card); }
+    .catalog__preview { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; background: var(--color-line); }
+    .catalog__name { padding: 12px 16px 4px; font-weight: 700; }
+    .catalog__text { padding: 0 16px 16px; color: var(--color-muted); font-size: 14px; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+    </div>
+  </header>
+  <main class="page__main container catalog">
+    <h1 class="catalog__title">Вёрстка «Шести городов»</h1>
+    <p class="catalog__lead">Все страницы и состояния приложения. Каждая страница адаптивная - сузьте окно, чтобы увидеть телефонную версию.</p>
+    <ul class="catalog__list">
+      <li><a class="catalog__item" href="main.html"><img class="catalog__preview" src="screenshots/main-desktop.jpg" alt=""><span class="catalog__name">main.html</span><span class="catalog__text">Главная: города, список, карта, поиск, сортировка</span></a></li>
+      <li><a class="catalog__item" href="main-empty.html"><img class="catalog__preview" src="screenshots/main-empty-desktop.jpg" alt=""><span class="catalog__name">main-empty.html</span><span class="catalog__text">Главная без предложений</span></a></li>
+      <li><a class="catalog__item" href="offer.html"><img class="catalog__preview" src="screenshots/offer-desktop.jpg" alt=""><span class="catalog__name">offer.html</span><span class="catalog__text">Предложение, пользователь вошёл</span></a></li>
+      <li><a class="catalog__item" href="offer-not-logged.html"><img class="catalog__preview" src="screenshots/offer-not-logged-desktop.jpg" alt=""><span class="catalog__name">offer-not-logged.html</span><span class="catalog__text">Предложение для гостя</span></a></li>
+      <li><a class="catalog__item" href="login.html"><img class="catalog__preview" src="screenshots/login-desktop.jpg" alt=""><span class="catalog__name">login.html</span><span class="catalog__text">Вход</span></a></li>
+      <li><a class="catalog__item" href="favorites.html"><img class="catalog__preview" src="screenshots/favorites-desktop.jpg" alt=""><span class="catalog__name">favorites.html</span><span class="catalog__text">Избранное</span></a></li>
+      <li><a class="catalog__item" href="favorites-empty.html"><img class="catalog__preview" src="screenshots/favorites-empty-desktop.jpg" alt=""><span class="catalog__name">favorites-empty.html</span><span class="catalog__text">Пустое избранное</span></a></li>
+      <li><a class="catalog__item" href="404.html"><img class="catalog__preview" src="screenshots/404-desktop.jpg" alt=""><span class="catalog__name">404.html</span><span class="catalog__text">Страница не найдена</span></a></li>
+      <li><a class="catalog__item" href="states.html"><img class="catalog__preview" src="screenshots/states-desktop.jpg" alt=""><span class="catalog__name">states.html</span><span class="catalog__text">Спиннер, ошибки, «нет сети», отправка формы</span></a></li>
+    </ul>
+  </main>
+</div>
+</body>
+</html>

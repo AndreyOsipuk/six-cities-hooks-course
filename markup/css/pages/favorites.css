@@ -1,0 +1,146 @@
+/* Избранное: favorites.html и favorites-empty.html */
+
+.favorites {
+  padding-top: 24px;
+  padding-bottom: 48px;
+}
+
+.favorites__title {
+  margin-bottom: 8px;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .favorites {
+    padding-top: 32px;
+    padding-bottom: 64px;
+  }
+
+  .favorites__title {
+    font-size: 32px;
+  }
+}
+
+/* ---------- Группа «город + предложения» ---------- */
+.favorites__group {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.favorites__group:last-child {
+  border-bottom: 0;
+}
+
+.favorites__city {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.favorites__city-title {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.favorites__city-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--tap);
+  padding-right: 8px;
+  border-radius: var(--radius-s);
+  transition: color 0.2s;
+}
+
+.favorites__city-link:hover {
+  color: var(--color-primary);
+}
+
+.favorites__city-icon {
+  width: 18px;
+  height: 24px;
+  flex-shrink: 0;
+  fill: var(--color-accent);
+}
+
+.favorites__places {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+/* ---------- Карточка в избранном ----------
+   Кнопка избранного - прямой потомок .place-card (а не обёртки фото),
+   поэтому в строчной карточке она стоит справа над текстом. */
+
+/* Телефон: карточка вертикальная - в строку не хватает ширины для заголовка */
+@media (max-width: 767px) {
+  .favorites .place-card--row {
+    flex-direction: column;
+  }
+
+  .favorites .place-card--row .place-card__image-wrapper {
+    flex-basis: auto;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+  }
+
+  .favorites .place-card--row .place-card__info {
+    padding: 14px 16px 16px;
+  }
+}
+
+/* Планшет и десктоп: строчные карточки в две колонки */
+@media (min-width: 768px) {
+  .favorites__places {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .favorites .place-card--row .place-card__image-wrapper {
+    /* На узком планшете фото уже, чтобы заголовку хватило места */
+    flex-basis: clamp(120px, 16vw, 160px);
+    min-height: 136px;
+  }
+}
+
+/* Десктоп: название города - колонкой слева от карточек */
+@media (min-width: 1144px) {
+  .favorites__group {
+    padding: 32px 0;
+  }
+
+  .favorites__city {
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
+  }
+}
+
+/* ---------- Пустое избранное ---------- */
+.favorites--empty {
+  display: grid;
+  place-items: center;
+}
+
+.favorites__empty {
+  width: 100%;
+  max-width: 640px;
+  min-height: 420px;
+  border-radius: var(--radius-l);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.favorites__find {
+  margin-top: 12px;
+}
+
+@media (min-width: 768px) {
+  .favorites--empty {
+    padding-top: 64px;
+    padding-bottom: 96px;
+  }
+}

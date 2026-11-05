@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Six Cities - Amsterdam</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages/main.css">
+</head>
+<body>
+  <svg width="0" height="0" class="visually-hidden" aria-hidden="true">
+    <symbol id="icon-bookmark" viewBox="0 0 20 20"><path d="M5 2.5h10a1 1 0 0 1 1 1V18l-6-3.8L4 18V3.5a1 1 0 0 1 1-1z" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-pin" viewBox="0 0 28 38"><path d="M14 0C6.3 0 0 6.1 0 13.7 0 24 14 38 14 38s14-14 14-24.3C28 6.1 21.7 0 14 0zm0 19a5.2 5.2 0 1 1 0-10.4A5.2 5.2 0 0 1 14 19z"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="6"/><path d="m13 13 5 5" stroke-linecap="round"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 12 12"><path d="m2 4 4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="icon-alert" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M10 6v5M10 14h.01" stroke-linecap="round"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15" stroke-linecap="round"/></symbol>
+  </svg>
+
+<div class="page">
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+      <nav class="user-nav" aria-label="Пользователь">
+        <a class="user-nav__link" href="favorites.html">
+          <img class="user-nav__avatar" src="img/avatars/user-3.svg" width="32" height="32" alt="">
+          <span class="user-nav__email">oliver.conner@gmail.com</span>
+          <span class="user-nav__count" aria-label="В избранном: 3">3</span>
+        </a>
+        <a class="user-nav__link user-nav__link--signout" href="main.html">
+          <span class="user-nav__label">Sign out</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4H4v12h4M12 6l4 4-4 4M16 10H8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page__main">
+    <h1 class="visually-hidden">Cities</h1>
+    <nav class="cities" aria-label="Cities">
+      <div class="container">
+        <ul class="cities__list">
+          <li><a class="cities__link" href="#">Paris</a></li>
+          <li><a class="cities__link" href="#">Cologne</a></li>
+          <li><a class="cities__link" href="#">Brussels</a></li>
+          <li><a class="cities__link cities__link--active" href="#" aria-current="page">Amsterdam</a></li>
+          <li><a class="cities__link" href="#">Hamburg</a></li>
+          <li><a class="cities__link" href="#">Dusseldorf</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container places-layout">
+      <div class="view-switch" role="radiogroup" aria-label="View">
+        <input class="view-switch__input" type="radio" name="view" id="view-list" checked>
+        <label class="view-switch__label" for="view-list">List</label>
+        <input class="view-switch__input" type="radio" name="view" id="view-map">
+        <label class="view-switch__label" for="view-map">Map</label>
+      </div>
+
+      <section class="places-layout__map" aria-label="Map">
+        <div class="map">
+            <span class="map__pin" style="left: 22%; top: 30%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+            <span class="map__pin" style="left: 45%; top: 22%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+            <span class="map__pin map__pin--active" style="left: 62%; top: 40%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+            <span class="map__pin" style="left: 38%; top: 52%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+            <span class="map__pin" style="left: 70%; top: 63%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+            <span class="map__pin" style="left: 28%; top: 70%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+            <span class="map__pin" style="left: 55%; top: 78%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+            <span class="map__pin" style="left: 80%; top: 28%;"><svg aria-hidden="true"><use href="#icon-pin"></use></svg></span>
+          <span class="map__note">Здесь - Яндекс Карты</span>
+        </div>
+      </section>
+
+      <section class="places places-layout__list">
+        <div class="places__head">
+          <h2 class="places__title">312 places to stay in Amsterdam</h2>
+          <div class="places__tools">
+            <label class="search">
+              <span class="visually-hidden">Search by title</span>
+              <svg class="search__icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+              <input class="field search__input" type="search" placeholder="Search by title" value="">
+            </label>
+            <div class="sort sort--opened">
+              <span class="sort__caption" id="sort-caption">Sort by</span>
+              <button class="sort__current" type="button" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="sort-caption sort-current">
+                <span id="sort-current">Popular</span>
+                <svg class="sort__arrow" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+              </button>
+              <ul class="sort__list" role="listbox" aria-labelledby="sort-caption">
+                <li class="sort__option sort__option--active" role="option" aria-selected="true">Popular</li>
+                <li class="sort__option sort__option--focused" role="option" aria-selected="false">Price: low to high</li>
+                <li class="sort__option" role="option" aria-selected="false">Price: high to low</li>
+                <li class="sort__option" role="option" aria-selected="false">Top rated first</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="places-grid">
+          <article class="place-card">
+            <div class="place-card__image-wrapper">
+              <img class="place-card__image" src="img/offers/1.jpg" width="400" height="300" alt="Apartment">
+            <span class="badge place-card__badge">Premium</span>
+              <button class="bookmark place-card__bookmark" type="button" aria-pressed="false">
+                <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                <span class="visually-hidden">Add to favorites</span>
+              </button>
+            </div>
+            <div class="place-card__info">
+              <p class="place-card__price"><b>&euro;120</b> / night</p>
+              <div class="rating" aria-label="Rating 4 of 5"><span class="rating__fill" style="--rating: 80%"></span></div>
+              <h3 class="place-card__title"><a href="offer.html">Beautiful &amp; luxurious apartment at great location</a></h3>
+              <p class="place-card__type">apartment</p>
+            </div>
+          </article>
+          <article class="place-card">
+            <div class="place-card__image-wrapper">
+              <img class="place-card__image" src="img/offers/2.jpg" width="400" height="300" alt="Room">
+              <button class="bookmark place-card__bookmark bookmark--active" type="button" aria-pressed="true">
+                <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                <span class="visually-hidden">Remove from favorites</span>
+              </button>
+            </div>
+            <div class="place-card__info">
+              <p class="place-card__price"><b>&euro;80</b> / night</p>
+              <div class="rating" aria-label="Rating 4 of 5"><span class="rating__fill" style="--rating: 80%"></span></div>
+              <h3 class="place-card__title"><a href="offer.html">Wood and stone place</a></h3>
+              <p class="place-card__type">room</p>
+            </div>
+          </article>
+          <article class="place-card place-card--active">
+            <div class="place-card__image-wrapper">
+              <img class="place-card__image" src="img/offers/3.jpg" width="400" height="300" alt="Apartment">
+              <button class="bookmark place-card__bookmark" type="button" aria-pressed="false">
+                <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                <span class="visually-hidden">Add to favorites</span>
+              </button>
+            </div>
+            <div class="place-card__info">
+              <p class="place-card__price"><b>&euro;132</b> / night</p>
+              <div class="rating" aria-label="Rating 4 of 5"><span class="rating__fill" style="--rating: 80%"></span></div>
+              <h3 class="place-card__title"><a href="offer.html">Canal View Prinsengracht</a></h3>
+              <p class="place-card__type">apartment</p>
+            </div>
+          </article>
+          <article class="place-card">
+            <div class="place-card__image-wrapper">
+              <img class="place-card__image" src="img/offers/5.jpg" width="400" height="300" alt="Apartment">
+            <span class="badge place-card__badge">Premium</span>
+              <button class="bookmark place-card__bookmark" type="button" aria-pressed="false">
+                <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                <span class="visually-hidden">Add to favorites</span>
+              </button>
+            </div>
+            <div class="place-card__info">
+              <p class="place-card__price"><b>&euro;180</b> / night</p>
+              <div class="rating" aria-label="Rating 5 of 5"><span class="rating__fill" style="--rating: 100%"></span></div>
+              <h3 class="place-card__title"><a href="offer.html">Nice, cozy, warm big bed apartment</a></h3>
+              <p class="place-card__type">apartment</p>
+            </div>
+          </article>
+          <article class="place-card">
+            <div class="place-card__image-wrapper">
+              <img class="place-card__image" src="img/offers/9.jpg" width="400" height="300" alt="Room">
+              <button class="bookmark place-card__bookmark bookmark--active" type="button" aria-pressed="true">
+                <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                <span class="visually-hidden">Remove from favorites</span>
+              </button>
+            </div>
+            <div class="place-card__info">
+              <p class="place-card__price"><b>&euro;95</b> / night</p>
+              <div class="rating" aria-label="Rating 3 of 5"><span class="rating__fill" style="--rating: 60%"></span></div>
+              <h3 class="place-card__title"><a href="offer.html">Quiet corner near Vondelpark</a></h3>
+              <p class="place-card__type">room</p>
+            </div>
+          </article>
+          <article class="place-card">
+            <div class="place-card__image-wrapper">
+              <img class="place-card__image" src="img/offers/13.jpg" width="400" height="300" alt="House">
+              <button class="bookmark place-card__bookmark" type="button" aria-pressed="false">
+                <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                <span class="visually-hidden">Add to favorites</span>
+              </button>
+            </div>
+            <div class="place-card__info">
+              <p class="place-card__price"><b>&euro;240</b> / night</p>
+              <div class="rating" aria-label="Rating 5 of 5"><span class="rating__fill" style="--rating: 100%"></span></div>
+              <h3 class="place-card__title"><a href="offer.html">Forest house on the edge of the city</a></h3>
+              <p class="place-card__type">house</p>
+            </div>
+          </article>
+          <article class="place-card">
+            <div class="place-card__image-wrapper">
+              <img class="place-card__image" src="img/offers/7.jpg" width="400" height="300" alt="Apartment">
+              <button class="bookmark place-card__bookmark" type="button" aria-pressed="false">
+                <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                <span class="visually-hidden">Add to favorites</span>
+              </button>
+            </div>
+            <div class="place-card__info">
+              <p class="place-card__price"><b>&euro;150</b> / night</p>
+              <div class="rating" aria-label="Rating 4 of 5"><span class="rating__fill" style="--rating: 80%"></span></div>
+              <h3 class="place-card__title"><a href="offer.html">Warm loft with a dining room</a></h3>
+              <p class="place-card__type">apartment</p>
+            </div>
+          </article>
+          <article class="place-card">
+            <div class="place-card__image-wrapper">
+              <img class="place-card__image" src="img/offers/14.jpg" width="400" height="300" alt="House">
+            <span class="badge place-card__badge">Premium</span>
+              <button class="bookmark place-card__bookmark bookmark--active" type="button" aria-pressed="true">
+                <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                <span class="visually-hidden">Remove from favorites</span>
+              </button>
+            </div>
+            <div class="place-card__info">
+              <p class="place-card__price"><b>&euro;210</b> / night</p>
+              <div class="rating" aria-label="Rating 3 of 5"><span class="rating__fill" style="--rating: 60%"></span></div>
+              <h3 class="place-card__title"><a href="offer.html">Red house with a garden</a></h3>
+              <p class="place-card__type">house</p>
+            </div>
+          </article>
+        </div>
+        <p class="places__more">Прокрутите ниже - подгрузятся ещё предложения</p>
+
+        <section class="recent" aria-labelledby="recent-title">
+          <h2 class="recent__title" id="recent-title">Recently viewed</h2>
+          <div class="recent__list">
+            <article class="place-card">
+              <div class="place-card__image-wrapper">
+                <img class="place-card__image" src="img/offers/13.jpg" width="400" height="300" alt="House">
+                <button class="bookmark place-card__bookmark" type="button" aria-pressed="false">
+                  <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                  <span class="visually-hidden">Add to favorites</span>
+                </button>
+              </div>
+              <div class="place-card__info">
+                <p class="place-card__price"><b>&euro;240</b> / night</p>
+                <div class="rating" aria-label="Rating 5 of 5"><span class="rating__fill" style="--rating: 100%"></span></div>
+                <h3 class="place-card__title"><a href="offer.html">Forest house on the edge of the city</a></h3>
+                <p class="place-card__type">house</p>
+              </div>
+            </article>
+            <article class="place-card">
+              <div class="place-card__image-wrapper">
+                <img class="place-card__image" src="img/offers/1.jpg" width="400" height="300" alt="Apartment">
+              <span class="badge place-card__badge">Premium</span>
+                <button class="bookmark place-card__bookmark" type="button" aria-pressed="false">
+                  <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                  <span class="visually-hidden">Add to favorites</span>
+                </button>
+              </div>
+              <div class="place-card__info">
+                <p class="place-card__price"><b>&euro;120</b> / night</p>
+                <div class="rating" aria-label="Rating 4 of 5"><span class="rating__fill" style="--rating: 80%"></span></div>
+                <h3 class="place-card__title"><a href="offer.html">Beautiful &amp; luxurious apartment at great location</a></h3>
+                <p class="place-card__type">apartment</p>
+              </div>
+            </article>
+            <article class="place-card">
+              <div class="place-card__image-wrapper">
+                <img class="place-card__image" src="img/offers/5.jpg" width="400" height="300" alt="Apartment">
+              <span class="badge place-card__badge">Premium</span>
+                <button class="bookmark place-card__bookmark" type="button" aria-pressed="false">
+                  <svg aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+                  <span class="visually-hidden">Add to favorites</span>
+                </button>
+              </div>
+              <div class="place-card__info">
+                <p class="place-card__price"><b>&euro;180</b> / night</p>
+                <div class="rating" aria-label="Rating 5 of 5"><span class="rating__fill" style="--rating: 100%"></span></div>
+                <h3 class="place-card__title"><a href="offer.html">Nice, cozy, warm big bed apartment</a></h3>
+                <p class="place-card__type">apartment</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="logo" href="main.html" aria-label="Шесть городов - на главную">
+        <img class="logo__mark" src="img/logo.svg" width="32" height="32" alt="">
+        <span class="logo__text">six<span>cities</span></span>
+      </a>
+      <p>Учебный проект</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* Страница 404 */
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 40px;
+  padding-bottom: 56px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .not-found {
+    padding-top: 72px;
+    padding-bottom: 96px;
+  }
+}
+
+/* ---------- Иллюстрация ---------- */
+.not-found__image {
+  width: 200px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 768px) {
+  .not-found__image {
+    width: 260px;
+  }
+}
+
+.not-found__shadow {
+  fill: var(--color-line);
+}
+
+.not-found__route {
+  stroke: var(--color-muted);
+  stroke-width: 3;
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+}
+
+.not-found__dot {
+  fill: var(--color-primary);
+}
+
+.not-found__pin {
+  fill: var(--color-accent);
+}
+
+.not-found__pin-hole {
+  fill: var(--color-surface);
+}
+
+.not-found__mark {
+  fill: var(--color-accent);
+  font-family: var(--font);
+  font-size: 30px;
+  font-weight: 800;
+}
+
+/* ---------- Текст ---------- */
+.not-found__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.not-found__code {
+  font-size: 72px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-primary);
+}
+
+@media (min-width: 768px) {
+  .not-found__title {
+    font-size: 28px;
+  }
+
+  .not-found__code {
+    font-size: 96px;
+  }
+}
+
+.not-found__text {
+  max-width: 440px;
+  color: var(--color-muted);
+}
+
+.not-found__button {
+  margin-top: 12px;
+}
