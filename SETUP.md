@@ -7,7 +7,7 @@
 - API: `https://14.design.htmlacademy.pro/six-cities`
 - Спецификация: `https://14.design.htmlacademy.pro/spec/six-cities`
 
-## 2. Яндекс Карты (H4)
+## 2. Яндекс Карты (H5)
 
 Карта в проекте - только Яндекс Карты, JS API 3.0.
 
@@ -39,10 +39,16 @@ VITE_API_JITTER=false
 Vitest + React Testing Library + jsdom. Браузеры не скачиваются, интернет тестам не нужен.
 
 - Ответы сервера в тестах подменяйте через `axios-mock-adapter`.
-- API Яндекс Карт в тестах H4 - мок, без загрузки скрипта.
-- `IntersectionObserver` в jsdom нет - мок в тестах H6.
+- API Яндекс Карт в тестах H5 - мок, без загрузки скрипта.
+- `IntersectionObserver` в jsdom нет - мок в тестах H7.
 - Таймеры (H1) - `vi.useFakeTimers()` и `vi.advanceTimersByTime()`.
 
 ## 4. Внешние ресурсы
 
 Никаких сторонних CDN (Google Fonts, unpkg и т. п.): шрифты и стили - локально из вёрстки, скрипт подключается только один - API Яндекс Карт.
+
+## 5. Покрытие и роутер в тестах
+
+- Покрытие: `npm i -D @vitest/coverage-v8`, запуск `npx vitest run --coverage --coverage.include=src/hooks`. Порог 90% можно зафиксировать в `vite.config.ts` (`test.coverage.thresholds`), тогда запуск с `--coverage` упадёт, если покрытие просядет.
+- Хуки с React Router (H2, H4, H7) тестируются в обёртке `MemoryRouter` с нужным `initialEntries`.
+- Хуки с Redux (H2, H8, H9) - в обёртке `Provider` с тестовым стором, как в тестах основного проекта.
