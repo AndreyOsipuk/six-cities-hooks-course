@@ -2,7 +2,7 @@
 
 ## 0. Версии (H0)
 
-Проект с курса собран на React 18.2, React Router 6.16, Redux Toolkit 1.9, Vite 4, Vitest 0.34, `eslint-plugin-react-hooks` 4.6. Целевые версии на ноябрь 2026:
+Стартовый шаблон академии собран на React 18.2, React Router 6.16, Redux Toolkit 1.9, Vite 4, Vitest 0.34, `eslint-plugin-react-hooks` 4.6. Первый PR (H0) - перевести его на актуальные версии (ноябрь 2026):
 
 | Пакет | Было | Стало |
 |-------|------|-------|
@@ -105,7 +105,7 @@ Vitest + React Testing Library + jsdom. Браузеры не скачивают
 
 - Покрытие: `npm i -D @vitest/coverage-v8`, запуск `npx vitest run --coverage --coverage.include=src/hooks`. Порог 90% можно зафиксировать в `vite.config.ts` (`test.coverage.thresholds`), тогда запуск с `--coverage` упадёт, если покрытие просядет.
 - Хуки с React Router (H2, H4, H7) тестируются в обёртке `MemoryRouter` с нужным `initialEntries`.
-- Хуки с Redux (H2, H8, H9) - в обёртке `Provider` с тестовым стором, как в тестах основного проекта.
+- Хуки с Redux (H2, H8, H9) - в обёртке `Provider` с тестовым стором.
 
 ## 6. Линтер (H0)
 
