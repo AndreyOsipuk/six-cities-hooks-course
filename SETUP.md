@@ -95,6 +95,7 @@ Vitest + React Testing Library + jsdom. Браузеры не скачивают
 - Ответы сервера в тестах подменяйте через `axios-mock-adapter`.
 - API Яндекс Карт в тестах H5 - мок, без загрузки скрипта.
 - `IntersectionObserver` в jsdom нет - мок в тестах H7.
+- `window.matchMedia` в jsdom тоже нет - мок в тестах H12 и в тестах компонентов, которые используют `useMediaQuery`.
 - Таймеры (H1) - `vi.useFakeTimers()` и `vi.advanceTimersByTime()`.
 
 ## 4. Внешние ресурсы
