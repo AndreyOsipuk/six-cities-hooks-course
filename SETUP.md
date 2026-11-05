@@ -15,13 +15,36 @@
 | `vite` | 4 | 8 |
 | `@vitejs/plugin-react` | 4 | 6 |
 | `vitest` | 0.34 | 5 |
-| `typescript` | 5.2 | 6.0 (не 7: `typescript-eslint` пока поддерживает TypeScript только до 6.0) |
+| `typescript` | 5.2 | **7.0** для проверки типов + пакет совместимости TypeScript 6 для линтера, см. раздел 0.1 |
 | `eslint` | 8 | 10, конфиг переводится на flat config (`eslint.config.js`) |
 | `eslint-config-htmlacademy` | 9.1 | 11, пресет `eslint-config-htmlacademy/react-typescript` |
 | `@testing-library/react` | 14 | 16 |
 | `eslint-plugin-react-hooks` | 4.6 | 7 (flat config) |
 
 Берите последние версии из этих линеек на момент работы - `npm outdated` покажет, что ещё отстаёт.
+
+### 0.1. TypeScript 7
+
+TypeScript 7 - компилятор, переписанный на Go, проверка типов в разы быстрее. Но `typescript-eslint` (на нём построен линтер академии) пока работает только с API TypeScript до 6.0 и с TypeScript 7 падает с ошибкой `typescript-eslint does not support TS 7.0`.
+
+Решение - поставить оба, под разными именами:
+
+```json
+"devDependencies": {
+  "typescript": "npm:@typescript/typescript6@^6.0.2",
+  "typescript7": "npm:typescript@^7.0.2"
+},
+"scripts": {
+  "typecheck": "node node_modules/typescript7/bin/tsc -p .",
+  "build": "npm run typecheck && vite build"
+}
+```
+
+- `typescript` - официальный пакет совместимости от команды TypeScript с API версии 6. Его подхватывают ESLint, `typescript-eslint` и редактор.
+- `typescript7` - сам TypeScript 7, только для проверки типов (`npm run typecheck`).
+- Команда `npx tsc` в таком проекте запустит версию 6, поэтому проверку типов запускайте только через `npm run typecheck`.
+
+Когда `typescript-eslint` выпустит поддержку TypeScript 7, оба пакета заменяются одним `typescript@7`.
 
 Руководства по переходу (читать до начала, а не после ошибки):
 
@@ -131,7 +154,7 @@ export default defineConfig({
 ## 9. Бонус: Next.js (N1)
 
 - Отдельный репозиторий `six-cities-next`, создаётся через `npx create-next-app@latest` (TypeScript, App Router). Next.js - последняя 16.x, Node.js 24+ (Next 16 требует от 20.9, но держите одну версию Node для обоих проектов).
-- Запуск: `next build && next start`. Деплой на Vercel не нужен и не оценивается.
+- Запуск: `next build && next start`. Деплой на Vercel не нужен.
 - Шрифты - только `next/font/local` с файлами шрифтов из вёрстки. `next/font/google` при сборке скачивает шрифты с серверов Google - не используйте.
 - Фото с сервера академии - `next/image` с `images.remotePatterns` для `14.design.htmlacademy.pro`.
 - Токен: при входе Server Action получает токен от API академии и кладёт его в httpOnly-cookie; запросы к API с сервера отправляют его в заголовке `X-Token`.
