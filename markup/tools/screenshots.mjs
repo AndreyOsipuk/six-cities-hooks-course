@@ -17,6 +17,7 @@ const PAGES = [
 
 const DEVICES = [
   { name: 'desktop', width: 1440, height: 900, mobile: false, scale: 1 },
+  { name: 'tablet', width: 768, height: 1024, mobile: true, scale: 1 },
   { name: 'mobile', width: 375, height: 812, mobile: true, scale: 2 },
 ];
 

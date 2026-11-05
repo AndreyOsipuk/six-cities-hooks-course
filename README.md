@@ -16,9 +16,9 @@
 | <img src="markup/previews/main-desktop.jpg" width="560" alt="Главная на десктопе"> | <img src="markup/previews/main-mobile.jpg" width="220" alt="Главная на телефоне"> |
 | <img src="markup/previews/offer-desktop.jpg" width="560" alt="Страница предложения на десктопе"> | <img src="markup/previews/offer-mobile.jpg" width="220" alt="Страница предложения на телефоне"> |
 
-Все страницы и состояния целиком - в [markup/screenshots/](markup/screenshots/), живая вёрстка - в [markup/](markup/) (откройте `markup/index.html`).
+**Все страницы и состояния целиком на десктопе, планшете и телефоне - [markup/SCREENS.md](markup/SCREENS.md).** Живая вёрстка - в [markup/](markup/) (откройте `markup/index.html`).
 
-Макет в Figma (цвета, текстовые стили, компоненты и ключевые экраны): https://www.figma.com/design/87T3S99hWo2FTCXa3e4f2l
+**Макет в Figma** - все страницы на десктопе, планшете и телефоне (24 экрана), цвета, текстовые стили и компоненты: https://www.figma.com/design/87T3S99hWo2FTCXa3e4f2l
 
 | Файл | Что в нём |
 |------|-----------|
