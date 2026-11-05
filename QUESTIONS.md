@@ -275,3 +275,204 @@ const status = useSyncExternalStore(subscribe, getSnapshot);
 **Мой ответ:**
 
 **Проверка:**
+
+---
+
+# Современный React (M1-M8) и Next.js (N1)
+
+Вопросы ниже - про встроенные API React 19 и React Router 8. Отвечайте до того, как переведёте на них свой код.
+
+---
+
+## 16. `useEffectEvent`
+
+```tsx
+function useLogHover(offerId: string | null, city: string) {
+  const onHover = useEffectEvent((id: string) => {
+    console.log('hover', id, 'in', city);
+  });
+
+  useEffect(() => {
+    if (offerId) {
+      onHover(offerId);
+    }
+  }, [offerId]);
+}
+```
+
+а) Пользователь навёл на карточку, потом сменил город, не убирая курсор. Сработает ли эффект? Какой `city` попадёт в лог при следующем наведении?
+б) Почему `onHover` нет в зависимостях и почему линтер на это не ругается?
+в) Что будет, если вызвать `onHover` прямо в теле компонента или передать его в `onClick` дочернего компонента?
+
+**Мой ответ:**
+
+**Проверка:**
+
+---
+
+## 17. `useActionState`
+
+```tsx
+const [error, submitAction, isPending] = useActionState(
+  async (prevError: string | null, formData: FormData) => {
+    const comment = String(formData.get('comment'));
+    try {
+      await dispatch(postComment({ offerId, comment })).unwrap();
+      return null;
+    } catch {
+      return 'Не удалось отправить отзыв';
+    }
+  },
+  null,
+);
+
+return <form action={submitAction}>...</form>;
+```
+
+а) Что такое `prevError` при первой отправке и при второй?
+б) Чему равен `isPending` во время `await` и после? Где вы раньше хранили это значение сами?
+в) Что станет с полями формы после успешной отправки, если ничего не делать? А после ошибки? Совпадает ли это с требованиями ТЗ к форме отзыва?
+
+**Мой ответ:**
+
+**Проверка:**
+
+---
+
+## 18. Что анимирует `<ViewTransition>`
+
+```tsx
+const handleCityClick = (city: City) => {
+  startTransition(() => {
+    dispatch(changeCity(city));
+  });
+};
+
+const handleSearchInput = (evt: ChangeEvent<HTMLInputElement>) => {
+  setQuery(evt.target.value);
+};
+```
+
+Список предложений обёрнут в `<ViewTransition>`. Анимируется ли смена города? Ввод в поиск? Почему React так разделяет обновления и что было бы, если бы анимировалось каждое нажатие клавиши?
+
+**Мой ответ:**
+
+**Проверка:**
+
+---
+
+## 19. `useOptimistic`
+
+```tsx
+const [optimisticIsFavorite, setOptimisticIsFavorite] = useOptimistic(isFavorite);
+
+const handleClick = () => {
+  startTransition(async () => {
+    setOptimisticIsFavorite(!optimisticIsFavorite);
+    await dispatch(toggleFavorite({ offerId, status: !isFavorite })).unwrap();
+  });
+};
+```
+
+а) Сервер ответил ошибкой. Что покажет кнопка после окончания перехода и почему откат произошёл «сам»?
+б) Что будет, если вызвать `setOptimisticIsFavorite` вне `startTransition`?
+в) Сервер ответил успехом, но редьюсер Redux не обновил `isFavorite`. Что увидит пользователь?
+
+**Мой ответ:**
+
+**Проверка:**
+
+---
+
+## 20. `<Activity>`
+
+```tsx
+function Main() {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    console.log('subscribe');
+    return () => console.log('unsubscribe');
+  }, []);
+  return <button onClick={() => setCount((c) => c + 1)}>{count}</button>;
+}
+
+<Activity mode={isMainVisible ? 'visible' : 'hidden'}>
+  <Main />
+</Activity>
+```
+
+Пользователь нажал кнопку 3 раза, ушёл на страницу предложения (`hidden`), вернулся (`visible`).
+
+а) Что выведется в консоль на каждом шаге?
+б) Что будет на кнопке после возврата?
+в) Чем это отличается от условного рендера `{isMainVisible && <Main />}` и от `display: none`?
+
+**Мой ответ:**
+
+**Проверка:**
+
+---
+
+## 21. React Compiler
+
+```tsx
+function OffersList({ offers, sortType }: Props) {
+  const sorted = offers.sort(getComparator(sortType));
+  return <ul>{sorted.map((offer) => <OfferCard key={offer.id} offer={offer} />)}</ul>;
+}
+```
+
+а) Что не так с этим кодом, даже без компилятора?
+б) Как поступит с этим компонентом React Compiler и почему?
+в) Нужен ли вам `useMemo` для `sorted`, если компилятор включён и код исправлен?
+
+**Мой ответ:**
+
+**Проверка:**
+
+---
+
+## 22. `loader` в React Router 8
+
+Пользователь на странице `/offer/1` кликает по карточке соседнего предложения `/offer/2`. У маршрута `/offer/:id` есть `loader`.
+
+а) Что видит пользователь, пока `loader` для `/offer/2` выполняется: страницу `/offer/1`, пустой экран или индикатор? От чего это зависит?
+б) Пока идёт загрузка, пользователь кликнул на `/offer/3`. Что произойдёт с запросом для `/offer/2`? Кто его отменит?
+в) Чем это отличается от вашего `useOfferLoader`, который запускает загрузку в эффекте?
+
+**Мой ответ:**
+
+**Проверка:**
+
+---
+
+## 23. Граница `'use client'` (N1)
+
+```tsx
+// app/offer/[id]/page.tsx - серверный компонент
+export default async function OfferPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const offer = await getOffer(id);
+  return <FavoriteButton offerId={id} onToggle={() => console.log('toggle')} />;
+}
+```
+
+`FavoriteButton` помечен `'use client'`. Что произойдёт и почему? Какие данные можно передавать через эту границу, а какие нет? Как правильно передать «что делать при клике», если это должно выполниться на сервере?
+
+**Мой ответ:**
+
+**Проверка:**
+
+---
+
+## 24. Где хранить токен (N1)
+
+В SPA токен хранится в `localStorage` под ключом `six-cities-token`, в Next.js-версии - в httpOnly-cookie.
+
+а) Что может сделать вредоносный скрипт на странице (XSS) в каждом из вариантов?
+б) Почему серверный компонент не может прочитать токен из `localStorage`?
+в) Какую новую угрозу добавляет cookie и как от неё защищаются?
+
+**Мой ответ:**
+
+**Проверка:**
